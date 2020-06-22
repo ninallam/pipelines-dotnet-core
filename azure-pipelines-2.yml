@@ -29,10 +29,14 @@ steps:
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
     artifactName: 'myWebsiteName'
+
+- task: DownloadPipelineArtifact@2
+  inputs:
+    artifact: myWebsiteName
 - task: AzureFileCopy@4
   displayName: 'AzureBlob File Copy'
   inputs:
-    SourcePath: '$(Build.ArtifactStagingDirectory/myWebsiteName'
+    SourcePath: '$(System.DefaultWorkingDirectory)/_ninallam.pipelines-dotnet-core (2)/myWebsiteName'
     azureSubscription: 'RMPM (afc11291-9826-46be-b852-70349146ddf8)'
     Destination: AzureBlob
     storage: nikstorageaccount
